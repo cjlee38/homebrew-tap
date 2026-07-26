@@ -16,6 +16,21 @@ output="${3:-$repo_root/Casks/cosmos.rb}"
     exit 1
 }
 
+if [[ -f "$output" ]]; then
+    current_version=$(
+        sed -n 's/^[[:space:]]*version "\([^"]*\)".*/\1/p' "$output"
+    )
+    [[ -n "$current_version" ]] || {
+        print -u2 "Existing Cask has no version: $output"
+        exit 1
+    }
+    autoload -Uz is-at-least
+    is-at-least "$current_version" "$version" || {
+        print -u2 "Refusing to downgrade Cosmos from $current_version to $version"
+        exit 1
+    }
+fi
+
 mkdir -p "${output:h}"
 sed \
     -e "s/@VERSION@/$version/g" \
