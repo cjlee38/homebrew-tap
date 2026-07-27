@@ -1,6 +1,6 @@
 cask "cosmos" do
-  version "0.1.3"
-  sha256 "f4fd65edad3f0f86b2b5bfa22a2ca00cfe5e89cd81843b89475a9fd948d36e06"
+  version "0.1.4"
+  sha256 "c7ece889e058bc6917897ac4adfe165c2446bec1ba490eadf241d6d11d3671ec"
 
   url "https://github.com/cjlee38/cosmos/releases/download/v#{version}/Cosmos-#{version}.dmg"
   name "Cosmos"
